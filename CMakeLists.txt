@@ -12,6 +12,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 add_subdirectory(lib/SDL)
 add_subdirectory(lib/glad)
+add_subdirectory(lib/glm)
 
 target_include_directories(hello-sdl PRIVATE
 	.
@@ -21,4 +22,5 @@ target_link_libraries(hello-sdl PRIVATE
 	SDL2::SDL2main
 	SDL2::SDL2 
 	glad
+	glm
 )
