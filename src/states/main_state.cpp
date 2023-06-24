@@ -10,7 +10,8 @@ MainState::MainState() {
 	shader_ = std::make_unique<Shader>("assets/shaders/main.vert", "assets/shaders/main.frag");
 	mesh_ = std::make_unique<Mesh>();
 	camera_ = std::make_unique<Camera>(640.0f / 480.0f, 90.0f);
-	camera_->SetPosition(glm::vec3{ 0.0f, 0.0f, 1.0f });
+	camera_->SetPosition(glm::vec3{ 0.0f, 0.0f, 2.0f });
+	object_ = std::make_unique<Entity>();
 }
 
 MainState::~MainState() {
@@ -19,10 +20,16 @@ MainState::~MainState() {
 
 void MainState::Update(float delta_time) {
 	camera_->Update();
+
+	auto rot = object_->GetRotation();
+	rot.y += delta_time;
+	object_->SetRotation(rot);
 }
 
 void MainState::Render() {
-	auto model_mat = glm::translate(glm::mat4(1.0f), glm::vec3(0.2f, 0.1f, 0.0f));
+	glm::mat4 model_mat{ 1.0f };
+	model_mat = glm::translate(model_mat, object_->GetPosition());
+	model_mat = glm::rotate(model_mat, object_->GetRotation().y, glm::vec3{ 0.0f, 1.0f, 0.0f });
 	auto pvm_mat = camera_->GetProjectionViewMatrix() * model_mat;
 
 	glEnable(GL_MULTISAMPLE);

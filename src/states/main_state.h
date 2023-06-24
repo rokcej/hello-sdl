@@ -6,6 +6,7 @@
 class Shader;
 class Mesh;
 class Camera;
+class Entity;
 
 class MainState : public State {
 public:
@@ -19,5 +20,6 @@ private:
 	std::unique_ptr<Shader> shader_;
 	std::unique_ptr<Mesh> mesh_;
 	std::unique_ptr<Camera> camera_;
+	std::unique_ptr<Entity> object_;
 
 };
