@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.13)
 
 project(hello-sdl)
 
-add_executable(hello-sdl "src/main.cpp" )
+add_executable(hello-sdl "src/main.cpp" "src/gl/shader.h" "src/gl/shader.cpp" "src/utils/file.h" "src/utils/file.cpp"  "src/gl/mesh.cpp" "src/gl/mesh.h" "src/entities/entity.h" "src/entities/entity.cpp" "src/entities/camera.h" "src/entities/camera.cpp")
 
 target_compile_features(hello-sdl PUBLIC cxx_std_17)
 
