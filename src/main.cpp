@@ -1,6 +1,7 @@
 #include <src/gl/shader.h>
 #include <src/gl/mesh.h>
 #include <src/entities/camera.h>
+#include <src/window.h>
 #include <SDL.h>
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -8,32 +9,9 @@
 #include <iostream>
 
 int main(int argc, char* args[]) {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;
-		return 1;
-	}
-
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-
-	SDL_Window* window = SDL_CreateWindow("Hello SDL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_OPENGL);
-	if (!window) {
-		std::cerr << "Error creating SDL window: " << SDL_GetError() << std::endl;
-		return 1;
-	}
-
-	SDL_GLContext context = SDL_GL_CreateContext(window);
-	if (!context) {
-		std::cerr << "Error creating SDL OpenGL context: " << SDL_GetError() << std::endl;
-		return 1;
-	}
-
-	if (!gladLoadGLLoader(SDL_GL_GetProcAddress)) {
-		std::cerr << "Error initializing GLAD" << std::endl;
+	Window window;
+	if (!window.Init("Hello SDL", 640, 480)) {
+		std::cerr << "Error initializing window" << std::endl;
 		return 1;
 	}
 
@@ -44,7 +22,7 @@ int main(int argc, char* args[]) {
 
 	Shader shader{"data/shaders/main.vert", "data/shaders/main.frag"};
 	Mesh mesh;
-	Camera camera{ 640.0f / 480.0f, 90.0f };
+	Camera camera{ (float)window.GetWidth() / window.GetHeight(), 90.0f};
 	camera.SetPosition(glm::vec3{ 0.0f, 0.0f, 1.0f });
 
 	bool is_running = true;
@@ -69,12 +47,9 @@ int main(int argc, char* args[]) {
 		mesh.Bind();
 		mesh.Draw();
 
-		SDL_GL_SwapWindow(window);
+		window.SwapBuffer();
 		SDL_Delay(10); // Poor man's FPS limiter
 	}
-
-	SDL_DestroyWindow(window);
-	SDL_Quit();
 
 	return 0;
 }
