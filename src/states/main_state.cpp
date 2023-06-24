@@ -7,7 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 MainState::MainState() {
-	shader_ = std::make_unique<Shader>("data/shaders/main.vert", "data/shaders/main.frag");
+	shader_ = std::make_unique<Shader>("assets/shaders/main.vert", "assets/shaders/main.frag");
 	mesh_ = std::make_unique<Mesh>();
 	camera_ = std::make_unique<Camera>(640.0f / 480.0f, 90.0f);
 	camera_->SetPosition(glm::vec3{ 0.0f, 0.0f, 1.0f });
