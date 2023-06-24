@@ -6,8 +6,6 @@ class Entity {
 public:
 	Entity() = default;
 
-	virtual void Update(float delta_time) = 0;
-
 	void SetPosition(const glm::vec3& position);
 	void SetRotation(const glm::vec3& rotation);
 	const glm::vec3& GetPosition() const;

@@ -34,7 +34,7 @@ int main(int argc, char* args[]) {
 			}
 		}
 
-		camera.Update(0.0f);
+		camera.Update();
 
 		auto model_mat = glm::translate(glm::mat4(1.0f), glm::vec3(0.2f, 0.1f, 0.0f));
 		auto pvm_mat = camera.GetProjectionViewMatrix() * model_mat;

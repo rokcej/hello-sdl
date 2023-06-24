@@ -7,7 +7,7 @@ class Camera : public Entity {
 public:
 	Camera(float aspect_ratio, float fov);
 
-	void Update(float delta_time) override;
+	void Update();
 
 	const glm::mat4& GetProjectionViewMatrix() const;
 
