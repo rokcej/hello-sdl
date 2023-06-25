@@ -6,7 +6,7 @@ add_executable(hello-sdl "src/main.cpp" "src/gl/shader.h" "src/gl/shader.cpp" "s
 
 target_compile_features(hello-sdl PUBLIC cxx_std_17)
 target_compile_options(hello-sdl PUBLIC
-	$<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+	$<$<CXX_COMPILER_ID:MSVC>:/W3 /WX>
 	$<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
 )
 
