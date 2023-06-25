@@ -7,7 +7,7 @@
 #include <imgui.h>
 #include <iostream>
 
-int main(int argc, char* args[]) {
+int main(int, char*[]) {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 		std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;
 		return 1;

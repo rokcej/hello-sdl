@@ -5,6 +5,10 @@ project(hello-sdl)
 add_executable(hello-sdl "src/main.cpp" "src/gl/shader.h" "src/gl/shader.cpp" "src/utils/file.h" "src/utils/file.cpp"  "src/gl/mesh.cpp" "src/gl/mesh.h" "src/entities/entity.h" "src/entities/entity.cpp" "src/entities/camera.h" "src/entities/camera.cpp" "src/window.h" "src/window.cpp" "src/utils/timer.h" "src/utils/timer.cpp" "src/states/main_state.cpp" "src/states/main_state.h" "src/states/state.h")
 
 target_compile_features(hello-sdl PUBLIC cxx_std_17)
+target_compile_options(hello-sdl PUBLIC
+	$<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+	$<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
+)
 
 # Put library DLLs into the same folder as the executable
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})

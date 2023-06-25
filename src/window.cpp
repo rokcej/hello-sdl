@@ -37,6 +37,8 @@ bool Window::Init(const char* title, int width, int height) {
 		std::cerr << "Error initializing GLAD" << std::endl;
 		return false;
 	}
+
+	return true;
 }
 
 void Window::SwapBuffer() {
