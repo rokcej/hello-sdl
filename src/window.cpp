@@ -11,16 +11,9 @@ Window::Window() {
 Window::~Window() {
 	SDL_GL_DeleteContext(sdl_gl_context_);
 	SDL_DestroyWindow(sdl_window_);
-	SDL_Quit();
 }
 
 bool Window::Init(const char* title, int width, int height) {
-	// TODO: Move SDL_Init and SDL_Quit to a manager
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;
-		return false;
-	}
-
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -60,4 +53,12 @@ int Window::GetHeight() const {
 	int height;
 	SDL_GetWindowSize(sdl_window_, nullptr, &height);
 	return height;
+}
+
+SDL_Window* Window::GetNativeWindow() const {
+	return sdl_window_;
+}
+
+void* Window::GetNativeContext() const {
+	return sdl_gl_context_;
 }

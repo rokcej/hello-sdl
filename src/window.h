@@ -13,6 +13,9 @@ public:
 	int GetWidth() const;
 	int GetHeight() const;
 
+	SDL_Window* GetNativeWindow() const;
+	void* GetNativeContext() const;
+
 private:
 	SDL_Window* sdl_window_ = nullptr;
 	void* sdl_gl_context_ = nullptr;

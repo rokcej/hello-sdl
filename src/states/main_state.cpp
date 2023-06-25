@@ -5,6 +5,7 @@
 #include <src/entities/camera.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <imgui.h>
 
 MainState::MainState() {
 	shader_ = std::make_unique<Shader>("assets/shaders/main.vert", "assets/shaders/main.frag");
@@ -22,8 +23,12 @@ void MainState::Update(float delta_time) {
 	camera_->Update();
 
 	auto rot = object_->GetRotation();
-	rot.y += delta_time;
+	rot.y += delta_time * rotation_speed_;
 	object_->SetRotation(rot);
+
+	ImGui::Begin("Object controls");
+	ImGui::SliderFloat("Rotation speed", &rotation_speed_, 0.1f, 10.0f);
+	ImGui::End();
 }
 
 void MainState::Render() {

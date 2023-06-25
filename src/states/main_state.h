@@ -22,4 +22,6 @@ private:
 	std::unique_ptr<Camera> camera_;
 	std::unique_ptr<Entity> object_;
 
+	float rotation_speed_ = 1.0f;
+
 };
