@@ -4,3 +4,6 @@ out/
 
 # Visual Studio
 .vs/
+
+# ImGui
+imgui.ini
