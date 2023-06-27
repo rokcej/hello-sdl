@@ -1,6 +1,7 @@
-#include <src/window.h>
 #include <src/states/main_state.h>
 #include <src/utils/timer.h>
+#include <src/managers/manager_system.h>
+#include <src/managers/window_manager.h>
 #include <SDL.h>
 #include <backends/imgui_impl_sdl2.h>
 #include <backends/imgui_impl_opengl3.h>
@@ -8,16 +9,9 @@
 #include <iostream>
 
 int main(int, char*[]) {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;
-		return 1;
-	}
+	ManagerSystem::GetInstance().Create();
 
-	Window window;
-	if (!window.Init("Hello SDL", 640, 480)) {
-		std::cerr << "Error initializing window" << std::endl;
-		return 1;
-	}
+	Window& window = pWindowManager.GetMainWindow();
 
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -60,7 +54,7 @@ int main(int, char*[]) {
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();
 
-	SDL_Quit();
+	ManagerSystem::GetInstance().Destroy();
 
 	return 0;
 }
