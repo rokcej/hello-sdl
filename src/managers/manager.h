@@ -12,5 +12,6 @@ public:
 protected:
 	virtual bool OnCreate() { return true; };
 	virtual void OnDestroy() {};
+	virtual void OnUpdate() {};
 
 };

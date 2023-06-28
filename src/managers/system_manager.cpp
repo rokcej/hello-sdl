@@ -1,7 +1,9 @@
 #include "system_manager.h"
 
+#include "manager_system.h"
 #include "window_manager.h"
 #include <SDL.h>
+#include <backends/imgui_impl_sdl2.h>
 #include <iostream>
 
 SystemManager pSystemManager;
@@ -19,4 +21,22 @@ bool SystemManager::OnCreate() {
 
 void SystemManager::OnDestroy() {
 	SDL_Quit();
+}
+
+void SystemManager::OnUpdate() {
+	PollEvents();
+}
+
+void SystemManager::Sleep(unsigned int milliseconds) {
+	SDL_Delay(milliseconds);
+}
+
+void SystemManager::PollEvents() {
+	static SDL_Event event;
+	while (SDL_PollEvent(&event)) {
+		ImGui_ImplSDL2_ProcessEvent(&event);
+		if (event.type == SDL_QUIT) {
+			ManagerSystem::GetInstance().Quit();
+		}
+	}
 }

@@ -11,11 +11,16 @@ class ManagerSystem : public Singleton<ManagerSystem>{
 public:
 	bool Create();
 	void Destroy();
+	void Update();
+
+	void Quit();
+	bool IsQuitting() const;
 
 private:
 	void Register(Manager* manager);
 
 private:
 	std::vector<Manager*> managers_;
+	bool is_quitting_ = false;
 
 };
