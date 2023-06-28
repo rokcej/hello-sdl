@@ -9,16 +9,16 @@
 #include <iostream>
 
 namespace imgui_utils {
-void Create(const Window& window);
+void Create(const Window* window);
 void Destroy();
-void NewFrame(const Window& window);
+void NewFrame(const Window* window);
 void Render();
 }
 
 int main(int, char*[]) {
 	ManagerSystem::GetInstance().Create();
 
-	Window& window = pWindowManager.GetMainWindow();
+	Window* window = pWindowManager.GetMainWindow();
 	imgui_utils::Create(window);
 
 	MainState state;
@@ -34,7 +34,7 @@ int main(int, char*[]) {
 
 		imgui_utils::Render();
 
-		window.SwapBuffer();
+		window->SwapBuffer();
 		pSystemManager.Sleep(1); // Poor man's FPS limiter
 	}
 
@@ -45,11 +45,11 @@ int main(int, char*[]) {
 	return 0;
 }
 
-void imgui_utils::Create(const Window& window) {
+void imgui_utils::Create(const Window* window) {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
-	ImGui_ImplSDL2_InitForOpenGL(window.GetNativeWindow(), window.GetNativeContext());
+	ImGui_ImplSDL2_InitForOpenGL(window->GetNativeWindow(), window->GetNativeContext());
 	ImGui_ImplOpenGL3_Init();
 }
 
@@ -59,9 +59,9 @@ void imgui_utils::Destroy() {
 	ImGui::DestroyContext();
 }
 
-void imgui_utils::NewFrame(const Window& window) {
+void imgui_utils::NewFrame(const Window* window) {
 	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplSDL2_NewFrame(window.GetNativeWindow());
+	ImGui_ImplSDL2_NewFrame(window->GetNativeWindow());
 	ImGui::NewFrame();
 }
 

@@ -4,10 +4,15 @@
 #include <src/window.h>
 #include <array>
 
+struct SDL_WindowEvent;
+
 class WindowManager : public Manager {
 public:
 	bool CreateMainWindow(int width, int height, const char* title = "");
-	Window& GetMainWindow();
+	Window* GetMainWindow();
+	Window* GetWindowById(unsigned int id);
+
+	void OnWindowEvent(const SDL_WindowEvent& window_event);
 
 protected:
 	bool OnCreate() override;

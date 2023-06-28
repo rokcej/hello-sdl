@@ -32,11 +32,18 @@ void SystemManager::Sleep(unsigned int milliseconds) {
 }
 
 void SystemManager::PollEvents() {
-	static SDL_Event event;
+	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		ImGui_ImplSDL2_ProcessEvent(&event);
-		if (event.type == SDL_QUIT) {
+		switch (event.type) {
+		case SDL_QUIT: {
 			ManagerSystem::GetInstance().Quit();
+			break;
+		}
+		case SDL_WINDOWEVENT: {
+			pWindowManager.OnWindowEvent(event.window);
+			break;
+		}
 		}
 	}
 }
