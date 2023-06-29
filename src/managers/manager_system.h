@@ -1,6 +1,6 @@
 #pragma once
 
-#include "src/utils/singleton.h"
+#include <src/utils/singleton.h>
 #include <vector>
 
 class Manager;

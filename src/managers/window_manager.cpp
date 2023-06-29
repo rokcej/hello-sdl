@@ -1,5 +1,6 @@
 #include "window_manager.h"
 
+#include <src/engine.h>
 #include <SDL.h>
 #include <iostream>
 
@@ -41,4 +42,5 @@ void WindowManager::OnWindowEvent(const SDL_WindowEvent& window_event) {
 	if (window) {
 		window->OnWindowEvent(window_event);
 	}
+	DEBUG_ASSERT(window, "Window events must have a valid window ID");
 }
