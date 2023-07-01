@@ -7,6 +7,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <imgui.h>
 
+using namespace engine;
+
+namespace app {
+
 MainState::MainState() {
 	shader_ = std::make_unique<Shader>("assets/shaders/main.vert", "assets/shaders/main.frag");
 	mesh_ = std::make_unique<Mesh>();
@@ -50,3 +54,5 @@ void MainState::Render() {
 	mesh_->Bind();
 	mesh_->Draw();
 }
+
+} // namespace app

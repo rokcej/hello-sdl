@@ -2,6 +2,7 @@
 
 #include <engine/utils/string.h>
 
+namespace engine {
 
 namespace debug {
 
@@ -36,3 +37,5 @@ void LOG_ERROR(const std::string& format, Ts... args) {
 	debug::LogInternal(string::Format(format, args...), true);
 #endif
 }
+
+} // namespace engine

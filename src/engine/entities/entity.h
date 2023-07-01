@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 
+namespace engine {
+
 class Entity {
 public:
 	Entity() = default;
@@ -18,3 +20,5 @@ private:
 	glm::vec3 forward_{ 0.0f, 0.0f, -1.0f };
 
 };
+
+} // namespace engine

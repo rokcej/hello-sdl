@@ -2,6 +2,8 @@
 
 #include "manager.h"
 
+namespace engine {
+
 bool ManagerSystem::Create() {
 	for (auto& manager : managers_) {
 		if (!manager->OnCreate()) {
@@ -34,3 +36,5 @@ void ManagerSystem::Quit() {
 bool ManagerSystem::IsQuitting() const {
 	return is_quitting_;
 }
+
+} // namespace engine

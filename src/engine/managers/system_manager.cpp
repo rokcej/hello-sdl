@@ -6,6 +6,8 @@
 #include <backends/imgui_impl_sdl2.h>
 #include <iostream>
 
+namespace engine {
+
 SystemManager pSystemManager;
 
 bool SystemManager::OnCreate() {
@@ -47,3 +49,5 @@ void SystemManager::PollEvents() {
 		}
 	}
 }
+
+} // namespace engine

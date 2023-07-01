@@ -1,5 +1,7 @@
 #pragma once
 
+namespace engine {
+
 template <class T>
 class Singleton {
 	friend T;
@@ -18,3 +20,5 @@ protected:
 	virtual ~Singleton() = default;
 
 };
+
+} // namespace engine

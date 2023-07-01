@@ -3,6 +3,8 @@
 struct SDL_Window;
 struct SDL_WindowEvent;
 
+namespace engine {
+
 class Window {
 	friend class WindowManager;
 
@@ -32,3 +34,5 @@ private:
 	void* sdl_gl_context_ = nullptr;
 
 };
+
+} // namespace engine

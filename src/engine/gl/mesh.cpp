@@ -1,5 +1,7 @@
 #include "mesh.h"
 
+namespace engine {
+
 Mesh::Mesh() {
 	constexpr float vertices[] = {
 		 0.5f,  0.5f, 0.0f,
@@ -47,3 +49,5 @@ void Mesh::Bind() const {
 void Mesh::Draw() const {
 	glDrawElements(GL_TRIANGLES, num_indices_, GL_UNSIGNED_INT, 0);
 }
+
+} // namespace engine

@@ -4,6 +4,8 @@
 #include <SDL.h>
 #include <iostream>
 
+namespace engine {
+
 WindowManager pWindowManager;
 
 bool WindowManager::OnCreate() {
@@ -44,3 +46,5 @@ void WindowManager::OnWindowEvent(const SDL_WindowEvent& window_event) {
 	}
 	DEBUG_ASSERT(window, "Window events must have a valid window ID");
 }
+
+} // namespace engine

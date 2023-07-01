@@ -5,6 +5,8 @@
 #include <functional>
 #include <utility>
 
+namespace engine {
+
 struct DelegateId {
 	const uint32_t instance_id;
 	const uint32_t callback_id;
@@ -49,3 +51,5 @@ private:
 	std::map<uint32_t, std::function<void(Ts...)>> callbacks_;
 
 };
+
+} // namespace engine

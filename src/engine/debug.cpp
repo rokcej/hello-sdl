@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cstdlib>
 
+namespace engine {
+
 namespace debug {
 
 void AssertInternal(bool condition, const std::string& text) {
@@ -18,3 +20,5 @@ void LogInternal(const std::string& text, bool error) {
 }
 
 } // namespace debug
+
+} // namespace engine

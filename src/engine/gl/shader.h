@@ -4,6 +4,8 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 
+namespace engine {
+
 namespace gl {
 
 	GLuint CreateShader(const std::string& file_path, GLenum shader_type);
@@ -29,3 +31,5 @@ private:
 	GLuint id_;
 
 };
+
+} // namespace engine

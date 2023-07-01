@@ -2,6 +2,8 @@
 
 #include <SDL.h>
 
+namespace engine {
+
 Timer::Timer() {
 	ticks_start_ = SDL_GetTicks64();
 	ticks_previous_ = ticks_start_;
@@ -20,3 +22,5 @@ float Timer::GetTime() const {
 float Timer::GetDeltaTime() const {
 	return (ticks_current_ - ticks_previous_) * 0.001f;
 }
+
+} // namespace engine

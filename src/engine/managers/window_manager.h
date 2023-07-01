@@ -6,6 +6,8 @@
 
 struct SDL_WindowEvent;
 
+namespace engine {
+
 class WindowManager : public Manager {
 public:
 	bool CreateMainWindow(int width, int height, const char* title = "");
@@ -24,3 +26,5 @@ private:
 };
 
 extern WindowManager pWindowManager;
+
+} // namespace engine

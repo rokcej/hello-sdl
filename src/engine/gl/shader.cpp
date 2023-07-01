@@ -4,6 +4,8 @@
 #include <engine/utils/file.h>
 #include <glm/gtc/type_ptr.hpp>
 
+namespace engine {
+
 // TODO: Add geometry shader support
 Shader::Shader(const std::string& vertex_path, const std::string& fragment_path) {
 	id_ = gl::CreateProgram(vertex_path, fragment_path);
@@ -116,3 +118,5 @@ namespace gl {
 	}
 
 }
+
+} // namespace engine

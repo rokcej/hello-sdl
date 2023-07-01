@@ -2,6 +2,8 @@
 
 #include <glad/glad.h>
 
+namespace engine {
+
 class Mesh {
 public:
 	Mesh();
@@ -17,3 +19,5 @@ private:
 	unsigned int num_indices_ = 0;
 
 };
+
+} // namespace engine

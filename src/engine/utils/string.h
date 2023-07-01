@@ -5,6 +5,8 @@
 #include <cstdio>
 #include <memory>
 
+namespace engine {
+
 namespace string {
 
 template <typename... Ts>
@@ -23,3 +25,5 @@ std::string Format(const std::string& format, Ts... args) {
 }
 
 } // namespace string
+
+} // namespace engine

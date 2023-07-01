@@ -7,12 +7,15 @@
 #include <backends/imgui_impl_opengl3.h>
 #include <imgui.h>
 
+using namespace engine;
+using namespace app;
+
 namespace imgui_utils {
-void Create(const Window* window);
-void Destroy();
-void NewFrame(const Window* window);
-void Render();
-}
+	void Create(const Window* window);
+	void Destroy();
+	void NewFrame(const Window* window);
+	void Render();
+} // namespace imgui_utils
 
 int main(int, char*[]) {
 	ManagerSystem::GetInstance().Create();

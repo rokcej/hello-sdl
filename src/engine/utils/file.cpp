@@ -4,6 +4,8 @@
 #include <sstream>
 #include <stdexcept>
 
+namespace engine {
+
 namespace file {
 
 // https://insanecoding.blogspot.com/2011/11/how-to-read-in-file-in-c.html
@@ -18,3 +20,5 @@ std::string ReadTextFile(const std::string& path) {
 }
 
 } // namespace file
+
+} // namespace engine

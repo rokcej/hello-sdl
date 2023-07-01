@@ -2,6 +2,8 @@
 
 #include "manager.h"
 
+namespace engine {
+
 class SystemManager : public Manager {
 public:
 	void Sleep(unsigned int milliseconds);
@@ -17,3 +19,5 @@ private:
 };
 
 extern SystemManager pSystemManager;
+
+} // namespace engine

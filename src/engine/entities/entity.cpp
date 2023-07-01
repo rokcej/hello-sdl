@@ -1,5 +1,7 @@
 #include "entity.h"
 
+namespace engine {
+
 void Entity::SetPosition(const glm::vec3& position) {
 	position_ = position;
 }
@@ -24,3 +26,5 @@ const glm::vec3& Entity::GetRotation() const {
 const glm::vec3& Entity::GetForward() const {
 	return forward_;
 }
+
+} // namespace engine

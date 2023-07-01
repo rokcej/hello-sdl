@@ -3,6 +3,8 @@
 #include <engine/entities/entity.h>
 #include <glm/glm.hpp>
 
+namespace engine {
+
 class Camera : public Entity {
 public:
 	Camera(float aspect_ratio, float fov);
@@ -20,3 +22,5 @@ private:
 	float aspect_ratio_;
 
 };
+
+} // namespace engine

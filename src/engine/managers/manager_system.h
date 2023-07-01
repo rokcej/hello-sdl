@@ -3,6 +3,8 @@
 #include <engine/utils/singleton.h>
 #include <vector>
 
+namespace engine {
+
 class Manager;
 
 class ManagerSystem : public Singleton<ManagerSystem>{
@@ -24,3 +26,5 @@ private:
 	bool is_quitting_ = false;
 
 };
+
+} // namespace engine

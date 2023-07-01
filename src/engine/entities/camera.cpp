@@ -2,6 +2,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+namespace engine {
+
 Camera::Camera(float aspect_ratio, float fov) {
 	aspect_ratio_ = aspect_ratio;
 	fov_ = fov;
@@ -18,3 +20,5 @@ void Camera::Update() {
 const glm::mat4& Camera::GetProjectionViewMatrix() const {
 	return proj_view_mat_;
 }
+
+} // namespace engine

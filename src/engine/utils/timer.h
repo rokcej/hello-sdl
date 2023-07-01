@@ -1,5 +1,7 @@
 #pragma once
 
+namespace engine {
+
 class Timer {
 public:
 	Timer();
@@ -15,3 +17,5 @@ private:
 	unsigned long long ticks_current_;
 
 };
+
+} // namespace engine

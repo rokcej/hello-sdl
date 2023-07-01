@@ -4,6 +4,8 @@
 #include <glad/glad.h>
 #include <iostream>
 
+namespace engine {
+
 Window::Window() {
 
 }
@@ -89,3 +91,5 @@ void* Window::GetNativeContext() const {
 void Window::UpdateFramebuffer() {
 	glViewport(0, 0, width_, height_);
 }
+
+} // namespace engine

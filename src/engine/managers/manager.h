@@ -1,5 +1,7 @@
 #pragma once
 
+namespace engine {
+
 // TODO: Allow only one instance of each manager
 
 class Manager {
@@ -15,3 +17,5 @@ protected:
 	virtual void OnUpdate() {};
 
 };
+
+} // namespace engine
