@@ -25,8 +25,8 @@ private:
 	void UpdateFramebuffer();
 
 private:
-	int width_;
-	int height_;
+	int width_ = 0;
+	int height_ = 0;
 
 	SDL_Window* sdl_window_ = nullptr;
 	void* sdl_gl_context_ = nullptr;

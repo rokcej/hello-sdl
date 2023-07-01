@@ -1,6 +1,6 @@
 #include "window_manager.h"
 
-#include <src/engine.h>
+#include <src/debug.h>
 #include <SDL.h>
 #include <iostream>
 

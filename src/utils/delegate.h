@@ -1,17 +1,14 @@
 #pragma once
 
-#include "debug.h"
+#include <src/debug.h>
 #include <map>
 #include <functional>
 #include <utility>
-
-namespace engine {
 
 struct DelegateId {
 	const uint32_t instance_id;
 	const uint32_t callback_id;
 };
-
 
 class DelegateBase {
 protected:
@@ -23,7 +20,6 @@ protected:
 	uint32_t callback_count_ = 0;
 
 };
-
 
 template <typename... Ts>
 class Delegate : public DelegateBase {
@@ -53,5 +49,3 @@ private:
 	std::map<uint32_t, std::function<void(Ts...)>> callbacks_;
 
 };
-
-} // namespace engine

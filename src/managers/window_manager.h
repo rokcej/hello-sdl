@@ -1,7 +1,7 @@
 #pragma once
 
 #include "manager.h"
-#include <src/window.h>
+#include <src/video/window.h>
 #include <array>
 
 struct SDL_WindowEvent;
