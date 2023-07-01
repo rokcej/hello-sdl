@@ -1,6 +1,6 @@
 #pragma once
 
-#include <src/debug.h>
+#include <engine/debug.h>
 #include <string>
 #include <cstdio>
 #include <memory>

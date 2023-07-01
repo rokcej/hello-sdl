@@ -1,6 +1,6 @@
 #pragma once
 
-#include <src/entities/entity.h>
+#include <engine/entities/entity.h>
 #include <glm/glm.hpp>
 
 class Camera : public Entity {

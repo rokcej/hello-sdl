@@ -1,12 +1,11 @@
-#include <src/states/main_state.h>
-#include <src/utils/timer.h>
-#include <src/managers/manager_system.h>
-#include <src/managers/window_manager.h>
-#include <src/managers/system_manager.h>
+#include <app/states/main_state.h>
+#include <engine/utils/timer.h>
+#include <engine/managers/manager_system.h>
+#include <engine/managers/window_manager.h>
+#include <engine/managers/system_manager.h>
 #include <backends/imgui_impl_sdl2.h>
 #include <backends/imgui_impl_opengl3.h>
 #include <imgui.h>
-#include <iostream>
 
 namespace imgui_utils {
 void Create(const Window* window);

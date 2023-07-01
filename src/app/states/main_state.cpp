@@ -1,8 +1,8 @@
 #include "main_state.h"
 
-#include <src/gl/shader.h>
-#include <src/gl/mesh.h>
-#include <src/entities/camera.h>
+#include <engine/gl/shader.h>
+#include <engine/gl/mesh.h>
+#include <engine/entities/camera.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <imgui.h>
