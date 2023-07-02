@@ -1,8 +1,9 @@
 #include "shader.h"
 
-#include <iostream>
+#include <engine/debug.h>
 #include <engine/utils/file.h>
 #include <glm/gtc/type_ptr.hpp>
+#include <memory>
 
 namespace engine {
 
@@ -56,12 +57,10 @@ namespace gl {
 			GLint log_length;
 			glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &log_length);
 
-			GLchar* log = new GLchar[log_length];
-			glGetShaderInfoLog(shader, log_length, &log_length, log);
+			std::unique_ptr<GLchar[]> log(new GLchar[log_length]);
+			glGetShaderInfoLog(shader, log_length, &log_length, log.get());
 
-			std::cerr << "[SHADER COMPILATION ERROR] " << file_path << std::endl;
-			std::cerr << log << std::endl << std::endl;
-			delete[] log;
+			LOG_ERROR("Error compiling shader ('%s'):\n%s", file_path, log.get());
 		}
 
 		return shader;
@@ -83,16 +82,14 @@ namespace gl {
 			GLint log_length;
 			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &log_length);
 
-			GLchar* log = new GLchar[log_length];
-			glGetProgramInfoLog(program, log_length, &log_length, log);
+			std::unique_ptr<GLchar[]> log(new GLchar[log_length]);
+			glGetProgramInfoLog(program, log_length, &log_length, log.get());
 
-			std::cerr << "[PROGRAM LINKING ERROR] " << vertex_shader_path << ", " << fragment_shader_path << std::endl;
-			std::cerr << log << std::endl << std::endl;
-			delete[] log;
-		}
-		else {
+			LOG_ERROR("Error linking shader program ('%s', '%s'):\n%s", vertex_shader_path, fragment_shader_path, log.get());
+		} else {
 			// Linking success
-#ifdef DEBUG
+
+#if defined(BUILD_DEBUG)
 			glValidateProgram(program);
 			GLint is_valid;
 			glGetProgramiv(program, GL_VALIDATE_STATUS, &is_valid);
@@ -101,14 +98,13 @@ namespace gl {
 				GLint log_length;
 				glGetProgramiv(program, GL_INFO_LOG_LENGTH, &log_length);
 
-				GLchar* log = new GLchar[log_length];
-				glGetProgramInfoLog(program, log_length, &log_length, log);
+				std::unique_ptr<GLchar[]> log(new GLchar[log_length]);
+				glGetProgramInfoLog(program, log_length, &log_length, log.get());
 
-				std::cerr << "[PROGRAM VALIDATION ERROR] " << vertex_shader_path << ", " << fragment_shader_path << std::endl;
-				std::cerr << log << std::endl << std::endl;
-				delete[] log;
+				LOG_ERROR("Error validating shader program ('%s', '%s'):\n%s", vertex_shader_path, fragment_shader_path, log.get());
 			}
-#endif
+#endif // defined(BUILD_DEBUG)
+
 		}
 
 		glDeleteShader(vertex_shader);

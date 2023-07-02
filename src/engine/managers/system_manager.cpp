@@ -2,9 +2,9 @@
 
 #include "manager_system.h"
 #include "window_manager.h"
+#include <engine/debug.h>
 #include <SDL.h>
 #include <backends/imgui_impl_sdl2.h>
-#include <iostream>
 
 namespace engine {
 
@@ -12,7 +12,7 @@ SystemManager pSystemManager;
 
 bool SystemManager::OnCreate() {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		std::cerr << "Error initializing SDL: " << SDL_GetError() << std::endl;
+		LOG_ERROR("Error initializing SDL: %s", SDL_GetError());
 		return false;
 	}
 

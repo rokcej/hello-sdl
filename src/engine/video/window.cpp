@@ -1,8 +1,8 @@
 #include "window.h"
 
+#include <engine/debug.h>
 #include <SDL.h>
 #include <glad/glad.h>
-#include <iostream>
 
 namespace engine {
 
@@ -29,18 +29,18 @@ bool Window::Init(const char* title, int width, int height) {
 	const Uint32 flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL;
 	sdl_window_ = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 	if (!sdl_window_) {
-		std::cerr << "Error creating SDL window: " << SDL_GetError() << std::endl;
+		LOG_ERROR("Error creating SDL window: %s", SDL_GetError());
 		return false;
 	}
 
 	sdl_gl_context_ = SDL_GL_CreateContext(sdl_window_);
 	if (!sdl_gl_context_) {
-		std::cerr << "Error creating SDL OpenGL context: " << SDL_GetError() << std::endl;
+		LOG_ERROR("Error creating SDL OpenGL context: %s", SDL_GetError());
 		return false;
 	}
 
 	if (!gladLoadGLLoader(SDL_GL_GetProcAddress)) {
-		std::cerr << "Error initializing GLAD" << std::endl;
+		LOG_ERROR("Error initializing GLAD");
 		return false;
 	}
 
