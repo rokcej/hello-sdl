@@ -1,6 +1,7 @@
 #pragma once
 
 #include <engine/utils/string.h>
+#include <string>
 
 namespace engine {
 
@@ -13,26 +14,26 @@ void LogInternal(const std::string& text, bool error);
 
 
 template <typename... Ts>
-void ASSERT(bool condition, const std::string& format, Ts... args) {
+void ASSERT(bool condition, const std::string& format, const Ts&... args) {
 	debug::AssertInternal(condition, string::Format(format, args...));
 }
 
 template <typename... Ts>
-void DEBUG_ASSERT(bool condition, const std::string& format, Ts... args) {
+void DEBUG_ASSERT(bool condition, const std::string& format, const Ts&... args) {
 #if defined(BUILD_DEBUG)
 	debug::AssertInternal(condition, string::Format(format, args...));
 #endif
 }
 
 template <typename... Ts>
-void LOG_INFO(const std::string& format, Ts... args) {
+void LOG_INFO(const std::string& format, const Ts&... args) {
 #if defined(BUILD_DEBUG)
 	debug::LogInternal(string::Format(format, args...), false);
 #endif
 }
 
 template <typename... Ts>
-void LOG_ERROR(const std::string& format, Ts... args) {
+void LOG_ERROR(const std::string& format, const Ts&... args) {
 #if defined(BUILD_DEBUG)
 	debug::LogInternal(string::Format(format, args...), true);
 #endif
