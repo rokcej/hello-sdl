@@ -14,7 +14,7 @@ namespace app {
 MainState::MainState() {
 	shader_ = std::make_unique<Shader>("assets/shaders/main.vert", "assets/shaders/main.frag");
 	mesh_ = std::make_unique<Mesh>();
-	camera_ = std::make_unique<Camera>(640.0f / 480.0f, 90.0f);
+	camera_ = std::make_unique<Camera>(90.0f);
 	camera_->SetPosition(glm::vec3{ 0.0f, 0.0f, 2.0f });
 	object_ = std::make_unique<Entity>();
 }
@@ -44,7 +44,6 @@ void MainState::Render() {
 	glEnable(GL_MULTISAMPLE);
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
-	glViewport(0, 0, 640, 480);
 
 	glClearColor(0.2f, 0.0f, 0.2f, 1.0f);
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);

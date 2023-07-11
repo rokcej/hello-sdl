@@ -1,5 +1,7 @@
 #pragma once
 
+#include <engine/utils/delegate.h>
+
 struct SDL_Window;
 struct SDL_WindowEvent;
 
@@ -25,6 +27,9 @@ public:
 private:
 	void OnWindowEvent(const SDL_WindowEvent& window_event);
 	void UpdateFramebuffer();
+
+public:
+	Delegate<> OnSizeChangedDelegate;
 
 private:
 	int width_ = 0;

@@ -7,9 +7,18 @@
 
 namespace engine {
 
-struct DelegateId {
-	const uint32_t instance_id;
-	const uint32_t callback_id;
+class DelegateId {
+public:
+	DelegateId() = default;
+	DelegateId(uint32_t instance_id, uint32_t callback_id_);
+
+	uint32_t GetInstanceId() const;
+	uint32_t GetCallbackId() const;
+
+private:
+	uint32_t instance_id_ = 0;
+	uint32_t callback_id_ = 0;
+
 };
 
 class DelegateBase {
@@ -28,16 +37,16 @@ class Delegate : public DelegateBase {
 public:
 	DelegateId operator+=(std::function<void(Ts...)>&& callback) {
 		const DelegateId id = CreateId();
-		callbacks_.emplace(id.callback_id, std::move(callback));
+		callbacks_.emplace(id.GetCallbackId(), std::move(callback));
 		return id;
 	}
 
 	void operator-=(const DelegateId& id) {
-		if (id.instance_id != instance_id_) {
+		if (id.GetInstanceId() != instance_id_) {
 			DEBUG_ASSERT(false, "Invalid delegate instance id");
 			return;
 		}
-		const size_t erased_count = callbacks_.erase(id.callback_id);
+		const size_t erased_count = callbacks_.erase(id.GetCallbackId());
 		DEBUG_ASSERT(erased_count == 1, "Invalid delegate callback id");
 	}
 

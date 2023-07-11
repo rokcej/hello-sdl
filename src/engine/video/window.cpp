@@ -52,7 +52,7 @@ void Window::SwapBuffer() {
 }
 
 void Window::OnWindowEvent(const SDL_WindowEvent& window_event) {
-	switch (window_event.type) {
+	switch (window_event.event) {
 	case SDL_WINDOWEVENT_SIZE_CHANGED:
 	case SDL_WINDOWEVENT_RESIZED: {
 		const int new_width = static_cast<int>(window_event.data1);
@@ -61,6 +61,7 @@ void Window::OnWindowEvent(const SDL_WindowEvent& window_event) {
 			width_ = new_width;
 			height_ = new_height;
 			UpdateFramebuffer();
+			OnSizeChangedDelegate();
 		}
 		break;
 	}

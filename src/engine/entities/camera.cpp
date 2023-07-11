@@ -1,14 +1,21 @@
 #include "camera.h"
 
+#include <engine/managers/window_manager.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace engine {
 
-Camera::Camera(float aspect_ratio, float fov) {
-	aspect_ratio_ = aspect_ratio;
+Camera::Camera(float fov) {
 	fov_ = fov;
 
-	proj_mat_ = glm::perspective(glm::radians(fov_), aspect_ratio_, 0.1f, 100.0f);
+	UpdateProjectionMatrix();
+	window_size_changed_delegate_id_ = pWindowManager.GetMainWindow()->OnSizeChangedDelegate += [this] {
+		UpdateProjectionMatrix();
+	};
+}
+
+Camera::~Camera() {
+	pWindowManager.GetMainWindow()->OnSizeChangedDelegate -= window_size_changed_delegate_id_;
 }
 
 void Camera::Update() {
@@ -19,6 +26,12 @@ void Camera::Update() {
 
 const glm::mat4& Camera::GetProjectionViewMatrix() const {
 	return proj_view_mat_;
+}
+
+void Camera::UpdateProjectionMatrix() {
+	const Window* window = pWindowManager.GetMainWindow();
+	const float aspect_ratio = static_cast<float>(window->GetWidth()) / static_cast<float>(window->GetHeight());
+	proj_mat_ = glm::perspective(glm::radians(fov_), aspect_ratio, 0.1f, 100.0f);
 }
 
 } // namespace engine
